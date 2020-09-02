@@ -1,6 +1,7 @@
 import {
   types,
   cast,
+  applySnapshot,
   } from "mobx-state-tree";
 
   export const Category = types.model({
@@ -17,7 +18,7 @@ import {
       id: number,
       name: string,
     }>) {
-      self.items = cast(categories);
+      applySnapshot(self.items, categories);
     },
     setSelectedCategory(id: number) {
       self.id = cast(id);

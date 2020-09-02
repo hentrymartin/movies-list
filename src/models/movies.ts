@@ -2,6 +2,7 @@ import {
   types,
   cast,
   flow,
+  applySnapshot,
   } from "mobx-state-tree";
 import { getMoviesListByGenreId } from "../api/api";
 
@@ -38,17 +39,16 @@ import { getMoviesListByGenreId } from "../api/api";
   .actions(self => ({
     getMoviesById: flow(function* (page: number, id?: number) {
       self.loading = true;
-
-      console.log(page, id);
+      
       // for the 1st page we are just resetting the list to empty array
       if (page === 1) {
-        self.list = cast([]);
+        applySnapshot(self.list, []);
       }
 
       try {
         const response = yield getMoviesListByGenreId(page, id);
         const { results } = yield response.json();
-        self.list = cast(self.list.concat(results));
+        applySnapshot(self.list, self.list.concat(results));
       } catch(e) {
         console.log(e);
       }
@@ -57,7 +57,7 @@ import { getMoviesListByGenreId } from "../api/api";
     }),
     resetValues() {
       self.page = 1;
-      self.list = cast([]);
+      applySnapshot(self.list, []);
     },
     setGenreName(name: string) {
       self.name = name;

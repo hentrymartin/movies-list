@@ -3,10 +3,12 @@ import { types, Instance, onSnapshot } from "mobx-state-tree";
 
 import { Categories } from './categories';
 import { MoviesList } from "./movies";
+import { Favourites } from "./favourites";
 
 const RootModel = types.model({
   categories: Categories,
   moviesList: MoviesList,
+  favourites: Favourites,
 });
 
 export const rootStore = RootModel.create({
@@ -19,9 +21,8 @@ export const rootStore = RootModel.create({
     page: 1,
     loading: false,
   },
+  favourites: {}
 });
-
-onSnapshot(rootStore, snapshot => console.log("Snapshot: ", snapshot));
 
 export type RootInstance = Instance<typeof RootModel>;
 const RootStoreContext = createContext<null | RootInstance>(null);

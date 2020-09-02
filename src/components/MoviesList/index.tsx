@@ -38,10 +38,8 @@ const MoviesList = observer(() => {
         )
       }
       <FlatList
-        contentContainerStyle={{
-        }}
         data={list as MovieItem[]}
-        renderItem={({ item }: { item: MovieItem}) => (<Movie movie={item} />)}
+        renderItem={({ item }: { item: MovieItem}) => (<Movie movie={item} detailsRouteName="Movie Details" />)}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1}
         ListFooterComponent={<ListFooter />}

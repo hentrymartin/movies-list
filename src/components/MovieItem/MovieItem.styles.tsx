@@ -2,12 +2,7 @@ import styled from 'styled-components/native';
 import { RatingLevel } from '.';
 
 export const MovieItemWrapper = styled.View`
-  margin-top: 25;
   position: relative;
-`;
-
-export const MovieImage = styled.Image`
-  height: 250px;
 `;
 
 export const ContentWrapper = styled.View`
@@ -16,6 +11,7 @@ export const ContentWrapper = styled.View`
   background: rgba(265, 265, 265, 0.7);
   left: 0;
   right: 0;
+  z-index: 10;
   min-height: 100px;
   padding: 10px 20px;
 `;
