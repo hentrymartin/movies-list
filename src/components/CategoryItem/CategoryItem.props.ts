@@ -5,4 +5,5 @@ export interface CategoryItemType {
 
 export interface CategoryItemProps {
   category: CategoryItemType;
+  onPress: () => void;
 }

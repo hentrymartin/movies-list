@@ -3,9 +3,9 @@ import { Text } from 'react-native';
 import { CategoryItemProps } from './CategoryItem.props';
 import { CategoryItemWrapper } from './CategoryItem.styles';
 
-const CategoryItem = ({ category }: CategoryItemProps) => {
+const CategoryItem = ({ category, onPress }: CategoryItemProps) => {
   return (
-    <CategoryItemWrapper>
+    <CategoryItemWrapper onPress={onPress}>
       <Text>{category.name}</Text>
     </CategoryItemWrapper>
   );

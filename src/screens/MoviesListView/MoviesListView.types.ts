@@ -1,0 +1,17 @@
+export interface MovieItem {
+  poster_path: string,
+  popularity: number,
+  original_title: string,
+  title: string,
+  vote_average: number,
+  overview: string,
+  release_date: string,
+  genre_ids: Array<number>,
+  original_language: string,
+  backdrop_path: string,
+  adult: boolean,
+  id: number,
+  media_type: string,
+  video: boolean,
+  vote_count: number,
+}

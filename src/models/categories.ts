@@ -1,10 +1,6 @@
 import {
   types,
-  Instance,
-  SnapshotIn,
   cast,
-  getParent,
-  destroy
   } from "mobx-state-tree";
 
   export const Category = types.model({
@@ -14,6 +10,7 @@ import {
 
   export const Categories = types.model({
     items: types.optional(types.array(Category), []),
+    id: types.maybe(types.number),
   }).
   actions(self => ({
     setCategories(categories: Array<{
@@ -21,5 +18,13 @@ import {
       name: string,
     }>) {
       self.items = cast(categories);
+    },
+    setSelectedCategory(id: number) {
+      self.id = cast(id);
     }
+  }))
+  .views(self => ({
+    getGenreById(id?: number) {
+      return self.items.filter(item => item.id === id)[0];
+    },
   }));

@@ -2,14 +2,22 @@ import { useContext, createContext } from "react";
 import { types, Instance, onSnapshot } from "mobx-state-tree";
 
 import { Categories } from './categories';
+import { MoviesList } from "./movies";
 
 const RootModel = types.model({
   categories: Categories,
+  moviesList: MoviesList,
 });
 
 export const rootStore = RootModel.create({
   categories: {
     items: [],
+  },
+  moviesList: {
+    list: [],
+    name: '',
+    page: 1,
+    loading: false,
   },
 });
 

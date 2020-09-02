@@ -1,12 +1,30 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect } from 'react';
+import { useMst } from '../../models/root';
+import { observer } from "mobx-react-lite";
+import { GenreDescription, ScrollViewWrapper } from './MoviesListView.styles';
+import MoviesList from '../../components/MoviesList';
 
-const MoviesListView = () => {
+const MoviesListView = observer(() => {
+  const { 
+    categories: { id, getGenreById },
+    moviesList: { setGenreName, name }
+  } = useMst();
+
+  useEffect(() => {
+    (async () => {
+      if (id === 0) return;
+      const { name } = getGenreById(id);
+      setGenreName(name);
+    })();
+
+  }, [id]);
+
   return (
-    <View>
-      Movies List view
-    </View>
+    <ScrollViewWrapper>
+      <GenreDescription>{name}</GenreDescription>
+      <MoviesList />
+    </ScrollViewWrapper>
   );
-};
+});
 
 export default MoviesListView;
