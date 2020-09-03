@@ -8,7 +8,13 @@ import Movie from '../../components/MovieItem';
 import { MovieItem } from '../MoviesListView/MoviesListView.types';
 import { ListFooter } from '../../components/MoviesList/MoviesList.styles';
 
-const FavouritesList = ({ navigation }: StackScreenProps<{}>) => {
+/**
+ * This shows the list of favourites from async storage
+ * @param param0 
+ */
+const FavouritesList = ({ navigation }: { navigation: {
+  addListener: (event: string, callback: () => void) => void;
+}}) => {
   const [favourites, setFavourites] = useState<MovieItem[]>([]);
 
   const onSetFavourites = async () => {

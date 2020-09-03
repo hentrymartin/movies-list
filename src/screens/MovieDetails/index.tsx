@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { MovieDetailsWrapper, MovieDetailsTitle, MovieDescription } from './MovieDetails.styles';
+import {
+  MovieDetailsWrapper,
+  MovieDetailsTitle,
+  MovieDescription,
+  MenuWrapper,
+} from './MovieDetails.styles';
 import { MovieDetailsProps } from './MovieDetails.types';
 import Image from '../../components/MovieImage';
-import FavouriteIcon from '../../components/FavouriteIcon';
-import { View } from 'react-native';
-import { getItem } from '../../utils/storage';
-import { onAddToStorage } from '../../utils';
+import PopularSection from '../../components/PopularSection';
 
+/**
+ * This shows the movie details form route params
+ */
 const MovieDetails = observer(({ route }: MovieDetailsProps) => {
   const { params:  { movie }} = route;
-  const [isFavourite, setFavourite] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      const favouriteIds = await getItem('@favouriteIds') as number[];
-      setFavourite(favouriteIds && favouriteIds.includes(movie.id));
-    })();
-  }, [movie]);
-
-  const onPressFavourite = () => {
-    onAddToStorage(movie, setFavourite);
-  };
 
   return (
     <MovieDetailsWrapper>
-      <MovieDetailsTitle>{movie.title}</MovieDetailsTitle>
+      <MovieDetailsTitle testID="movie-title">{movie.title}</MovieDetailsTitle>
 
       <Image uri={`http://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
 
-      <View>
-        <FavouriteIcon favourite={isFavourite} onPress={onPressFavourite} /> 
-      </View>
+      <MenuWrapper>
+        <PopularSection movie={movie} />
+      </MenuWrapper>
+      
       <MovieDescription>
         {movie.overview}
       </MovieDescription>

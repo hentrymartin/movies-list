@@ -7,6 +7,9 @@ import Movie from '../MovieItem';
 import { MovieItem } from '../../screens/MoviesListView/MoviesListView.types';
 import { ActivityIndicatorWrapper, ListFooter } from './MoviesList.styles';
 
+/**
+ * Movies list component which displays the movies data from server. 
+ */
 const MoviesList = observer(() => {
   const {
     categories:{ id },
@@ -32,12 +35,13 @@ const MoviesList = observer(() => {
     <View>
       {
         loading && (
-          <ActivityIndicatorWrapper>
+          <ActivityIndicatorWrapper testID="activity-indicator">
             <ActivityIndicator animating={loading} size="large" color="#00ff00" />
           </ActivityIndicatorWrapper>
         )
       }
       <FlatList
+        testID="flat-list"
         data={list as MovieItem[]}
         renderItem={({ item }: { item: MovieItem}) => (<Movie movie={item} detailsRouteName="Movie Details" />)}
         onEndReached={onEndReached}

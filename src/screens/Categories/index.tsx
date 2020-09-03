@@ -8,6 +8,9 @@ import CategoryItem from '../../components/CategoryItem';
 import { CategoryItemType } from '../../components/CategoryItem/CategoryItem.props';
 import { CategoriesScreenProps } from './Categories.types';
 
+/**
+ * This shows list of categories or genres
+ */
 const Categories = observer(({navigation}: CategoriesScreenProps) => {
 
   const { categories }  = useMst();
@@ -29,7 +32,7 @@ const Categories = observer(({navigation}: CategoriesScreenProps) => {
   return (
     <ScrollView>
       {
-        items.map(category => <CategoryItem category={category} onPress={() => onCategoryClicked(category)} />)
+        items.map(category => <CategoryItem key={category.id} category={category} onPress={() => onCategoryClicked(category)} />)
       }
     </ScrollView>
   )

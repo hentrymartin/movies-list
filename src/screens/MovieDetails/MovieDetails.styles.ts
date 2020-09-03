@@ -16,3 +16,10 @@ export const MovieDescription = styled.Text`
   line-height: 22px;
   color: grey;
 `;
+
+export const MenuWrapper = styled.View`
+  display: flex;
+  padding: 0 20px;
+  align-items: flex-end;
+  justify-content: center;
+`;

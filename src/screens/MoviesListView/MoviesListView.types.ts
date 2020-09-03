@@ -11,7 +11,7 @@ export interface MovieItem {
   backdrop_path: string,
   adult: boolean,
   id: number,
-  media_type: string,
+  media_type?: string,
   video: boolean,
   vote_count: number,
 }

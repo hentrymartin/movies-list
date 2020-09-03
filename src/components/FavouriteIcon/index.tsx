@@ -7,6 +7,10 @@ import Star from '../../images/star.png';
 import { FavouriteIconProps } from './FavouriteIcon.types';
 import { FavouriteImage } from './FavouriteIcon.styles';
 
+/**
+ * Component to show favourite status of the movie
+ * @param param0 
+ */
 const FavouriteIcon = ({ favourite, onPress }: FavouriteIconProps) => {
 
   const getImage = () => {
@@ -14,9 +18,10 @@ const FavouriteIcon = ({ favourite, onPress }: FavouriteIconProps) => {
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} testID="favourite-icon">
       <FavouriteImage
         source={getImage()}
+        testID="star-icon"
       />
     </TouchableOpacity>
   );

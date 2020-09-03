@@ -39,16 +39,11 @@ import { getMoviesListByGenreId } from "../api/api";
   .actions(self => ({
     getMoviesById: flow(function* (page: number, id?: number) {
       self.loading = true;
-      
-      // for the 1st page we are just resetting the list to empty array
-      if (page === 1) {
-        applySnapshot(self.list, []);
-      }
 
       try {
         const response = yield getMoviesListByGenreId(page, id);
         const { results } = yield response.json();
-        applySnapshot(self.list, self.list.concat(results));
+        self.list = cast(self.list.concat(results));
       } catch(e) {
         console.log(e);
       }

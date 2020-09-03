@@ -4,6 +4,9 @@ import { observer } from "mobx-react-lite";
 import { GenreDescription, ScrollViewWrapper } from './MoviesListView.styles';
 import MoviesList from '../../components/MoviesList';
 
+/**
+ * This shows the list of movies based on the selected genre id
+ */
 const MoviesListView = observer(() => {
   const { 
     categories: { id, getGenreById },
